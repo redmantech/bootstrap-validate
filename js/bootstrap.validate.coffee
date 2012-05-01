@@ -35,10 +35,10 @@ $('form[data-validate="yes"]').attr('novalidate', 'novalidate').on 'submit', (su
     
     if error isnt no
       $this.closest('.control-group').addClass('error').removeClass('success')
-      $helpContainer.html('<i class="icon-remove-sign icon-red"></i> ' + error)
+      $helpContainer.html('<i class="icon-remove icon-red"></i> ' + error)
     else
       $this.closest('.control-group').addClass('success').removeClass('error')
-      $helpContainer.html('<i class="icon-ok-sign icon-green"></i>')
+      $helpContainer.html('<i class="icon-ok icon-green"></i>')
 
   unless errors.length is 0
     submitEvent.stopImmediatePropagation()

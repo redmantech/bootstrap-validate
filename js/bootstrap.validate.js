@@ -46,10 +46,10 @@
       }
       if (error !== false) {
         $this.closest('.control-group').addClass('error').removeClass('success');
-        return $helpContainer.html('<i class="icon-remove-sign icon-red"></i> ' + error);
+        return $helpContainer.html('<i class="icon-remove icon-red"></i> ' + error);
       } else {
         $this.closest('.control-group').addClass('success').removeClass('error');
-        return $helpContainer.html('<i class="icon-ok-sign icon-green"></i>');
+        return $helpContainer.html('<i class="icon-ok icon-green"></i>');
       }
     });
     if (errors.length !== 0) {
