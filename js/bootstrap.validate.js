@@ -4,7 +4,7 @@
   $('form[data-validate="yes"]').attr('novalidate', 'novalidate').on('submit', function(submitEvent) {
     var errors;
     errors = [];
-    $('input, textarea', $(this)).each(function(i, el) {
+    $('input, textarea', $(this)).not('[type="radio"]').not('[type="checkbox"]').each(function(i, el) {
       var $helpContainer, $this, error, maxLength, minLength, pattern, required, validateName, value;
       $this = $(this);
       value = $this.val();

@@ -1,13 +1,13 @@
 $('form[data-validate="yes"]').attr('novalidate', 'novalidate').on 'submit', (submitEvent) ->
   errors = [] #array for future extension... possibly error callbacks.
 
-  $('input, textarea', $(@)).each (i, el) ->
+  $('input, textarea', $(@)).not('[type="radio"]').not('[type="checkbox"]').each (i, el) ->
     $this = $(@)
     value = $this.val()
     error = no
     $helpContainer = $this.siblings('.help-inline')
 
-    if $this.attr('required') or value isnt ''
+    if ($this.attr('required') or value isnt '')
       validateName = $this.attr('data-validatename') or $this.attr('name') or 'This field'
 
       required = $this.attr('required') is 'required'
