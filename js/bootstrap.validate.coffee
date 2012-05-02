@@ -37,19 +37,34 @@ validateTextField = ($field) ->
   
   error
 
-
-$('form[data-validate="yes"]').attr('novalidate', 'novalidate').on 'submit', (submitEvent) ->
+$forms = $('form[data-validate="yes"]')
+$forms.attr('novalidate', 'novalidate').on 'submit', (submitEvent) ->
   errors = [] #array for future extension... possibly error callbacks.
 
   $('input, textarea', $(@)).not('[type="radio"]').not('[type="checkbox"]').each (i, el) ->
-    if error = validateTextField($(el)) then errors.push(error)
+    if error = validateTextField $(el) then errors.push(error)
 
   unless errors.length is 0
     submitEvent.stopImmediatePropagation()
     return false
 
+$('input, textarea', $forms).not('[type="radio"]').not('[type="checkbox"]').on 'change', (changeEvent) ->
+  validateTextField $(@);
+
+$('input, textarea', $forms).not('[type="radio"]').not('[type="checkbox"]').on 'keyup', (keyupEvent) ->
+  $this = $(@)
+  timeout = $this.data 'keyup-timeout'
+  clearTimeout(timeout) unless timeout is undefined
+  timeout = setTimeout(
+    -> 
+      validateTextField($this)
+    750
+  )
+  $this.data 'keyup-timeout', timeout;
+
+
 #make sure validation comes first on submit (before any ajax or other handlers)
-$('form[data-validate="yes"]').each (i, el) ->
+$forms.each (i, el) ->
   $form = $(el)
   handlers = $form.data('events').submit
   validation = handlers.pop()
