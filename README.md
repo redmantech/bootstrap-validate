@@ -10,7 +10,7 @@ Include the following on your page:
 -bootstrap.validate js, css and imgs
 
 ##Useage##
-`
+```html
     <form data-validate="yes">
       <fieldset class="control-group">
         <label class="control-label">Email</label>
@@ -20,7 +20,7 @@ Include the following on your page:
         </div>
       </fieldset>
     </form>
-`
+```
 
 Adding data-validate="yes" to your form enabled validations automatically. The validator will disable browser native validations with novalidate="novalidate" automatically. The validator attempts to run **FIRST** before any other submit callback can happen, making it more compatible with ajax callbacks that require validation.
 
