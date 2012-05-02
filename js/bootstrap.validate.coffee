@@ -34,6 +34,9 @@ validateTextField = ($field) ->
     else
       $field.closest('.control-group').addClass('success').removeClass('error')
       $helpContainer.html('<i class="icon-ok icon-green"></i>')
+  else
+    $field.closest('.control-group').removeClass('success').removeClass('error')
+    $helpContainer.html('')
   
   error
 
