@@ -10,15 +10,17 @@ Include the following on your page:
 -bootstrap.validate js, css and imgs
 
 ##Useage##
-<form data-validate="yes">
-  <fieldset class="control-group">
-    <label class="control-label">Email</label>
-    <div class="controls">
-      <input type="email" name="EMAIL" data-minlength="5" maxlength="100" pattern="[a-z\.]+@[a-z\.]+" required="require">
-      <span class="help-inline"></span>
-    </div>
-  </fieldset>
-</form>
+`
+    <form data-validate="yes">
+      <fieldset class="control-group">
+        <label class="control-label">Email</label>
+        <div class="controls">
+          <input type="email" name="EMAIL" data-minlength="5" maxlength="100" pattern="[a-z\.]+@[a-z\.]+" required="require">
+          <span class="help-inline"></span>
+        </div>
+      </fieldset>
+    </form>
+`
 
 Adding data-validate="yes" to your form enabled validations automatically. The validator will disable browser native validations with novalidate="novalidate" automatically. The validator attempts to run **FIRST** before any other submit callback can happen, making it more compatible with ajax callbacks that require validation.
 
