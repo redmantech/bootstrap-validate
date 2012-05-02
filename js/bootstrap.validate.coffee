@@ -32,13 +32,12 @@ $('form[data-validate="yes"]').attr('novalidate', 'novalidate').on 'submit', (su
       if error is no and maxLength isnt off
         errors.push(error = validateName + ' is too long') unless value.length <= maxLength
 
-    
-    if error isnt no
-      $this.closest('.control-group').addClass('error').removeClass('success')
-      $helpContainer.html('<i class="icon-remove icon-red"></i> ' + error)
-    else
-      $this.closest('.control-group').addClass('success').removeClass('error')
-      $helpContainer.html('<i class="icon-ok icon-green"></i>')
+      if error isnt no
+        $this.closest('.control-group').addClass('error').removeClass('success')
+        $helpContainer.html('<i class="icon-remove icon-red"></i> ' + error)
+      else
+        $this.closest('.control-group').addClass('success').removeClass('error')
+        $helpContainer.html('<i class="icon-ok icon-green"></i>')
 
   unless errors.length is 0
     submitEvent.stopImmediatePropagation()

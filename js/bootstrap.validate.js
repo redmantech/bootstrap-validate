@@ -43,13 +43,13 @@
             errors.push(error = validateName + ' is too long');
           }
         }
-      }
-      if (error !== false) {
-        $this.closest('.control-group').addClass('error').removeClass('success');
-        return $helpContainer.html('<i class="icon-remove icon-red"></i> ' + error);
-      } else {
-        $this.closest('.control-group').addClass('success').removeClass('error');
-        return $helpContainer.html('<i class="icon-ok icon-green"></i>');
+        if (error !== false) {
+          $this.closest('.control-group').addClass('error').removeClass('success');
+          return $helpContainer.html('<i class="icon-remove icon-red"></i> ' + error);
+        } else {
+          $this.closest('.control-group').addClass('success').removeClass('error');
+          return $helpContainer.html('<i class="icon-ok icon-green"></i>');
+        }
       }
     });
     if (errors.length !== 0) {
