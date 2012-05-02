@@ -19,6 +19,9 @@ Include the following on your page:
           <span class="help-inline"></span>
         </div>
       </fieldset>
+      <fieldset class="form-actions">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </fieldset>
     </form>
 ```
 
