@@ -40,36 +40,43 @@ validateTextField = ($field) ->
   
   error
 
-$forms = $('form[data-validate="yes"]')
-$forms.attr('novalidate', 'novalidate').on 'submit', (submitEvent) ->
-  errors = [] #array for future extension... possibly error callbacks.
+#add a jquery extension.
+(($) ->
+  $.fn.bootstrapValidate = () ->
+    throw new Error('Boostrap Validate Expects A Form') unless @.is('form')
 
-  $('input, textarea', $(@)).not('[type="radio"]').not('[type="checkbox"]').each (i, el) ->
-    if error = validateTextField $(el) then errors.push(error)
+    @.attr('novalidate', 'novalidate').on 'submit', (submitEvent) ->
 
-  unless errors.length is 0
-    submitEvent.stopImmediatePropagation()
-    return false
+      errors = [] #array for future extension... possibly error callbacks.
 
-$('input, textarea', $forms).not('[type="radio"]').not('[type="checkbox"]').on 'change', (changeEvent) ->
-  validateTextField $(@);
+      $('input, textarea', $(@)).not('[type="radio"]').not('[type="checkbox"]').each (i, el) ->
+        if error = validateTextField $(el) then errors.push(error)
 
-$('input, textarea', $forms).not('[type="radio"]').not('[type="checkbox"]').on 'keyup', (keyupEvent) ->
-  $this = $(@)
-  timeout = $this.data 'keyup-timeout'
-  clearTimeout(timeout) unless timeout is undefined
-  timeout = setTimeout(
-    -> 
-      validateTextField($this)
-    750
-  )
-  $this.data 'keyup-timeout', timeout;
+      unless errors.length is 0
+        submitEvent.stopImmediatePropagation()
+        return false
+
+    $('input, textarea', @).not('[type="radio"]').not('[type="checkbox"]').on 'change', (changeEvent) ->
+      validateTextField $(@);
+
+    $('input, textarea', @).not('[type="radio"]').not('[type="checkbox"]').on 'keyup', (keyupEvent) ->
+      $this = $(@)
+      timeout = $this.data 'keyup-timeout'
+      clearTimeout(timeout) unless timeout is undefined
+      timeout = setTimeout(
+        -> 
+          validateTextField($this)
+        750
+      )
+      $this.data 'keyup-timeout', timeout;
 
 
-#make sure validation comes first on submit (before any ajax or other handlers)
-$forms.each (i, el) ->
-  $form = $(el)
-  handlers = $form.data('events').submit
-  validation = handlers.pop()
-  handlers = handlers.splice 0, 0, validation
+    #make sure validation comes first on submit (before any ajax or other handlers)
+    @.each (i, el) ->
+      $form = $(el)
+      handlers = $form.data('events').submit
+      validation = handlers.pop()
+      handlers = handlers.splice 0, 0, validation
+)($)
 
+$('form[data-validate="yes"]').bootstrapValidate()
