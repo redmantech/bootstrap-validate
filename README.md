@@ -17,7 +17,7 @@ Include the following on your page:
       <fieldset class="control-group">
         <label class="control-label">Email</label>
         <div class="controls">
-          <input type="email" name="EMAIL" data-minlength="5" maxlength="100" pattern="[a-z\.]+@[a-z\.]+" required="require">
+          <input type="email" name="EMAIL" data-minlength="5" maxlength="100" pattern="[a-z\.]+@[a-z\.]+" required="required">
           <span class="help-inline"></span>
         </div>
       </fieldset>
