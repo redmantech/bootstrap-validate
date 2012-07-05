@@ -13,18 +13,18 @@ Include the following on your page:
 
 ##Useage##
 ```html
-    <form data-validate="yes">
-      <fieldset class="control-group">
-        <label class="control-label">Email</label>
-        <div class="controls">
-          <input type="email" name="EMAIL" data-minlength="5" maxlength="100" pattern="[a-z\.]+@[a-z\.]+" required="required">
-          <span class="help-inline"></span>
-        </div>
-      </fieldset>
-      <fieldset class="form-actions">
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </fieldset>
-    </form>
+<form data-validate="yes">
+  <fieldset class="control-group">
+    <label class="control-label">Email</label>
+    <div class="controls">
+      <input type="email" name="EMAIL" data-minlength="5" maxlength="100" pattern="[a-z\.]+@[a-z\.]+" required="required">
+      <span class="help-inline"></span>
+    </div>
+  </fieldset>
+  <fieldset class="form-actions">
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </fieldset>
+</form>
 ```
 Adding *data-validate="yes"* to your form enabled validations automatically. The validator will disable browser native validations with *novalidate="novalidate"* automatically. The validator attempts to run **FIRST** before any other submit callback can happen, making it more compatible with ajax callbacks that require validation.
 
@@ -35,7 +35,7 @@ Validations on a given field will not run unless the field is either populated o
 Error/Success messages are automatically populated in the '.help-inline' element that is sibling to the input and both 'success' and 'error' classes are applied to the '.control-group' element.
 
 ```javascript
-    $('form[data-novalidate=yes]').bootstrapValidate();
+$('form[data-novalidate=yes]').bootstrapValidate();
 ```
 You can also turn on the validation for a given form by calling the jQuery plugin *$.bootstrapValidate()*. This is particularly useful if you are adding forms to the DOM after the page has been rendered.
 
