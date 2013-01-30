@@ -77,6 +77,7 @@ validateTextField = ($field) ->
       handlers = $form.data('events').submit
       validation = handlers.pop()
       handlers = handlers.splice 0, 0, validation
-)($)
+)(jQuery)
 
-$('form[data-validate="yes"]').bootstrapValidate()
+jQuery () ->
+  jQuery('form[data-validate="yes"]').bootstrapValidate()
